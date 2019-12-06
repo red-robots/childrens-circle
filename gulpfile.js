@@ -25,7 +25,7 @@
   */
 
 var project             = 'Childrens Circle'; // Project Name.
-var projecturl          = 'http://bellaworks/childrenscircle/'; // Project URL. Could be something like localhost:8888.
+var projecturl          = 'http://bellaworks/circleschool/'; // Project URL. Could be something like localhost:8888.
 
 
 var styleSRC            = './assets/sass/style.scss'; // Path to main .scss file.
