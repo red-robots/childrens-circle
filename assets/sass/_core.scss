@@ -169,7 +169,7 @@ body {
 			}
 		}
 	}
-	
+
 	ul.menu > li:hover > a {
 		@include tab {
 			color: $color_blue;
@@ -373,6 +373,16 @@ body.home #content.wrapper {
 	.blue {
 		.textwrap {
 			background: $color_blue;
+		}
+	}
+	.col-title {
+		margin-bottom: 30px;
+	}
+	.wave {
+		text-align: center;
+		svg {
+			display: inline-block;
+			width: 120px;
 		}
 	}
 }

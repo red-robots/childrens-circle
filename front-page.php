@@ -35,7 +35,10 @@
 							<?php include_once(get_template_directory().'/images/book.svg'); ?>
 						</div>
 						<div class="textwrap cf">
-							<h2 class="hd">News</h2>
+							<div class="col-title">
+								<h2 class="hd">News</h2>
+								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -46,7 +49,10 @@
 							<?php include_once(get_template_directory().'/images/calendar.svg'); ?>
 						</div>
 						<div class="textwrap cf">
-							<h2 class="hd">Calendar</h2>
+							<div class="col-title">
+								<h2 class="hd">Calendar</h2>
+								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -57,7 +63,10 @@
 							<?php include_once(get_template_directory().'/images/facebook.svg'); ?>
 						</div>
 						<div class="textwrap cf">
-							<h2 class="hd">Facebook Posts</h2>
+							<div class="col-title">
+								<h2 class="hd">Facebook Posts</h2>
+								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
+							</div>
 						</div>
 					</div>
 				</div>

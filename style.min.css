@@ -1885,3 +1885,6 @@ body.home #content.wrapper{max-width:100%;width:100%;padding:0}
 .section.news-section .yellow .textwrap{background:#fcb239}
 .section.news-section .purple .textwrap{background:#6d5b97}
 .section.news-section .blue .textwrap{background:#1180ae}
+.section.news-section .col-title{margin-bottom:30px}
+.section.news-section .wave{text-align:center}
+.section.news-section .wave svg{display:inline-block;width:120px}
