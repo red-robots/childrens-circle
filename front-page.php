@@ -39,6 +39,9 @@
 								<h2 class="hd">News</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
 							</div>
+							<div class="col-details">
+								<p class="text-center"><em>(development in progress...)</em></p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -53,6 +56,9 @@
 								<h2 class="hd">Calendar</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
 							</div>
+							<div class="col-details">
+								<p class="text-center"><em>(development in progress...)</em></p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -66,6 +72,9 @@
 							<div class="col-title">
 								<h2 class="hd">Facebook Posts</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
+							</div>
+							<div class="col-details">
+								<p class="text-center"><em>(development in progress...)</em></p>
 							</div>
 						</div>
 					</div>
