@@ -1,0 +1,377 @@
+div,h1,h2,h3,h4,h5,h6,p,li,a,span,strong {
+	overflow-wrap: normal;
+    word-wrap: normal;
+    -ms-word-break: normal;
+    word-break: normal;
+    word-break: normal;
+    -ms-hyphens: none;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    hyphens: none;
+    page-break-inside: avoid;
+}
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+pre {
+	font-family: $font_pre;
+	font-size: 13px;
+	line-height: 1.3;
+}
+a,button,input {
+	transition: all ease-out .3s;
+}
+.cf:before, .cf:after {
+    content: " "; 
+    display: table; 
+}
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
+.text-center {text-align:center;}
+
+/* Text meant only for screen readers. */
+.sr {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	&:focus {
+		background-color: #333;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		color: #FFF;
+		display: block;
+		@include font-size(0.875);
+		font-weight: bold;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; /* Above WP toolbar. */
+	}
+}
+body {
+	font-family: $font_main;
+	font-size: 15px;
+	line-height: 1.6;
+	color: $color_main;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.wrapper {
+	max-width: 90%;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.site {
+	position: relative;
+	border-top: 8px solid $color_blue;
+}
+.logo {
+	width: 30%;
+	a,img {
+		display: block;
+		float: left;
+	}
+	a {
+		@include tab {
+			width: 100px;
+		}
+	}
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+/* Navigation */
+.site-header {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	.flexwrap {
+		@include tab {
+			@include flexgroup-center();
+		}
+	}
+}
+.cloud .st0{fill:#FFF7EB;}
+.main-navigation {
+	@include tab {
+		width:70%;
+	}
+	.mainmenu {
+		@include tab {
+			display: inline-block;
+			float: right;
+		}
+		ul {
+			margin: 0 0;
+			padding: 0 0;
+			list-style: none;
+		}
+		li {
+			position: relative;
+		}
+		a {
+			text-decoration: none;
+			display: inline-block;
+			position: relative;
+		}
+	}
+	ul.menu {
+		float: left;
+	}
+	ul.menu > li {
+		float: left;
+	}
+	ul.menu > li > a {
+		font-family: $font1;
+		color: $color_grey;
+		line-height: 1.3;
+		font-size: 18px;
+		@include tab {
+			font-size: 1.2rem;
+			padding: 5px 16px;
+		}
+		span.m {
+			display: block;
+			position: relative;
+			z-index: 10;
+		}
+		span.cloud {
+			display: none;
+			@include tab {
+				display: block;
+				width: 100%;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translateY(-50%);
+				text-align: center;
+				transition: all ease-out .3s;
+				opacity: 0;
+				visibility: hidden;
+				margin-left: -18px;
+				svg {
+					display: inline-block;
+					width: 60%;
+					margin-left: -5%;
+					position: relative;
+				}
+			}
+		}
+	}
+	ul.menu > li:hover > a {
+		@include tab {
+			color: $color_blue;
+			span.cloud {
+				margin-left: 0;
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}
+
+/* Mobile Menu */
+.menu-toggle {
+	display: block;
+	-webkit-appearance: none;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	outline: none;
+	@include tab {
+		display: none;
+	}
+}
+
+/* Slider */
+.slider {
+	&.swiper-container,
+	.swiper-wrapper {
+		width: 100%;
+		height: 250px;
+		transition: all ease-out .3s;
+		@include xs {
+			height: 350px;
+		}
+		@include tab {
+			height: 500px;
+		}
+		@include mid {
+			height: 600px;
+		}
+	}
+	&#slideshow .swiper-slide {
+		cursor: -webkit-grab; cursor: grab;
+	}
+	.swiper-slide {
+		width: 100%;
+		height: 100%;
+		background-size:cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		transition: all ease-out .3s;
+	}
+	.swiper-pagination-bullet {
+		width: 10px;
+		height: 10px;
+		background:rgba(255,255,255, 0.35);
+		opacity: 1;
+		&.swiper-pagination-bullet-active {
+			background:rgba(255,255,255,1);
+		}
+	}
+	.swiper-button-next, .swiper-button-prev {
+		display: none;
+	}
+}
+body.home #content.wrapper {
+	max-width: 100%;
+	width: 100%;
+	padding: 0 0;
+}
+.section {
+	position: relative;
+	.flexwrap {
+		position: relative;
+		z-index: 10;
+		@include flexgroup-center();
+	}
+	.flexcol {
+		position: relative;
+	}
+}
+.section.intro {
+	background: $color_pink;
+	color: #FFF;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	@include tab {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	&:before {
+		content:"";
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background:url("images/pattern-kids.png");
+		background-position: center;
+	}
+	h1,h2,h3,h4,h5 {
+		font-family: $font1;
+		line-height: 1.3;
+		margin: 0 0 20px;
+	}
+	h1 { font-size: 40px; }
+	h2 { font-size: 30px; }
+	h3 { font-size: 20px; }
+	h4 { font-size: 25px; }
+	h5 { font-size: 20px; }
+	.textcol {
+		@include tab {
+			width: 60%;
+		}
+		.inside {
+			padding: 30px 0;
+			@include tab {
+				padding: 2.5em 2.5em 2.5em 0;
+			}
+			@include mid {
+				padding: 3.5em 3.5em 3.5em 0;
+			}
+		}
+		p:first-child {
+			margin-top: 0;
+		}
+		p {
+			font-size: 18px;
+		}
+	}
+	.imagecol {
+		@include tab {
+			width: 40%;
+		}
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
+.section.news-section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	@include tab {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	.icon {
+		text-align: center;
+		margin-bottom: 20px;
+		height: 143px;
+		@include flexgroup-center();
+		@include flexbox-justify(center);
+		svg {
+			display: inline-block;
+			width: 135px;
+		}
+	}
+	.flexcol {
+		width: 100%;
+		margin: 30px 0;
+		@include tab {
+			width: 33.3%;
+			margin: 0 0;
+		}
+		.inside {
+			padding: 10px;
+			@include tab {
+				padding: 5%;
+			}
+		}
+	}
+	.flexwrap {
+		margin: 0 -1.65%;
+	}
+	.textwrap {
+		position: relative;
+		padding: 1em;
+		border-radius: 10px;
+	}
+	h2.hd {
+		font-family: $font1;
+		font-size: 30px;
+		line-height: 1.3;
+		margin: 0 0;
+		text-align: center;
+		color: #FFF;
+	}
+	.yellow {
+		.textwrap {
+			background: $color_yellow;
+		}
+	}
+	.purple {
+		.textwrap {
+			background: $color_purple;
+		}
+	}
+	.blue {
+		.textwrap {
+			background: $color_blue;
+		}
+	}
+}
