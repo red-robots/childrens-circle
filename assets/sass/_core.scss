@@ -277,7 +277,7 @@ body {
 	padding: 6px;
 	border: none;
 	z-index: 4020;
-	@include mid {
+	@include tab {
 		display: none;
 	}
 	span.bar {
