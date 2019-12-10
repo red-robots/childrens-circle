@@ -246,8 +246,10 @@ function next_entries_result($posttype='post',$paged=1,$perpage=10,$orderbyArr=n
                 <?php } ?>
 
                 <div class="text">
-                    <h2 class="ptitle"><a href="<?php echo $pagelink ?>"><?php echo get_the_title(); ?></a></h2>
-                    <div class="excerpt"><?php echo $content; ?></div>
+                    <div class="txtwrap">
+                        <h2 class="ptitle"><a href="<?php echo $pagelink ?>"><?php echo get_the_title(); ?></a></h2>
+                        <div class="excerpt"><?php echo $content; ?></div>
+                    </div>
                 </div>
             </div>
         </article>
