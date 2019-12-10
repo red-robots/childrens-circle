@@ -238,8 +238,8 @@ function next_entries_result($posttype='post',$paged=1,$perpage=10,$orderbyArr=n
             <div class="inner cf">
                 <?php if (in_array($posttype, $show_thumbnail)) { ?>
                     <div class="postdate"><span><?php echo $postdate ?></span></div>
-                    <div class="thumb <?php echo ($image) ? 'hasimage':'noimage'; ?>"<?php echo $style ?>>
-                        <a href="<?php echo $pagelink ?>"><img src="<?php echo $placeholder ?>" alt="" aria-hidden="true" /></a>
+                    <div class="thumb <?php echo ($image) ? 'hasimage':'noimage'; ?>">
+                        <a href="<?php echo $pagelink ?>" <?php echo $style ?>><img src="<?php echo $placeholder ?>" alt="" aria-hidden="true" /></a>
                     </div>
                 <?php } else { ?>
                     <div class="postdate"><a href="<?php echo $pagelink ?>"><?php echo $postdate ?></a></div>
