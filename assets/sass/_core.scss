@@ -670,7 +670,7 @@ body.home #content.wrapper {
 		display: none;
 	}
 	.simcal-calendar-list  {
-		padding: 20px;
+		padding: 0 20px 20px;
 	}
 	.simcal-date-format {
 		background: transparent;
@@ -679,6 +679,8 @@ body.home #content.wrapper {
 		@include flexgroup();
 	}
 	.simcal-day-label {
+		margin: 0 0!important;
+		padding: 0 0!important;
 		border-bottom: none!important;
 		span {
 			background: $color_purple!important;
@@ -918,7 +920,7 @@ body.home #content.wrapper {
 }
 
 .cff-wrapper #cff.cff-default-styles {
-	padding: 20px;
+	padding: 0 20px 20px;
 	a {
 		display: inline-block;
 		text-decoration: none;
