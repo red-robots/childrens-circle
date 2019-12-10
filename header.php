@@ -13,6 +13,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div id="oVerlay"></div>
 <div id="cloud" style="display:none;"><span class="cloud"><?php include_once(get_template_directory().'/images/cloud.svg'); ?></span></div>
 <div id="page" class="site cf">
 	<a class="skip-link sr" href="#content"><?php esc_html_e( 'Skip to content', 'bellaworks' ); ?></a>
@@ -30,9 +31,8 @@
 		        <?php } ?>
 
 
-
+				<button id="toggleMenu" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="sr"><?php esc_html_e( 'MENU', 'bellaworks' ); ?></span><span class="bar"></span></button>
 				<nav id="site-navigation" class="main-navigation" role="navigation">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'MENU', 'bellaworks' ); ?></button>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu','container_class'=>'mainmenu','link_before'=>'<span class="m">','link_after'=>'</span>' ) ); ?>
 				</nav><!-- #site-navigation -->
 			</div>

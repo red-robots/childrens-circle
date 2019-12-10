@@ -76,14 +76,12 @@ jQuery(document).ready(function ($) {
 
 	$(document).on("click","#toggleMenu",function(){
 		$(this).toggleClass('open');
-		$('.mobile-navigation').toggleClass('open');
-		$('body').toggleClass('open-mobile-menu');
-		$('.site-header .logo').toggleClass('fixed');
-		var parentdiv = $(".mobile-navigation").outerHeight();
-		var mobile_nav_height = $(".mobile-main-nav").outerHeight();
-		if(mobile_nav_height>parentdiv) {
-			$('.mobile-navigation').addClass("overflow-height");
-		}
+		$('.main-navigation').toggleClass('open');
+		$('body').toggleClass('menu-open');
+	});
+
+	$(document).on("click","#oVerlay",function(){
+		$("#toggleMenu").trigger("click");
 	});
 
 	/* Facebook Feeds */
@@ -92,54 +90,67 @@ jQuery(document).ready(function ($) {
 		$("#fbLink").attr("href",fbLink).attr("target","_blank");
 	}
 
+	/* Remove Blan <p> */
+	$("#calendarEvents p").each(function(){
+		var $this = $(this);
+		if($this.html().replace(/\s|&nbsp;/g, '').length == 0)
+		$this.remove();
+	});
+
+	$("#calendarEvents .simcal-day").each(function(){
+		var target = $(this);
+		var border = "<div class='divider'></div>";
+		$(border).insertAfter( target );
+	});
+
 
 	/* === AJAX MORE ITEMS === */
 	   /* NEWS */
 
-	$(document).on("click","a.seemore",function(e){
-		e.preventDefault();
-		var target = $(this);
-		var currentpage = $(this).attr("data-currentpage");
-		var total = $(this).attr("data-count");
-		var ptype  = $(this).attr('data-type');
-		var container  = $(this).attr('data-container');
-		var orderby  = $(this).attr('data-orderby');
-		var perpage  = $(this).attr('data-perpage');
-		var orderbyArr  = $(this).attr('data-orderby');
-		var buttonDiv = $(this).parents(".buttondiv");
-		var spinner = buttonDiv.find(".spinner");
-		var noMorePost = '<span class="imorebtn">No more items to load</span>';
+	// $(document).on("click","a.seemore",function(e){
+	// 	e.preventDefault();
+	// 	var target = $(this);
+	// 	var currentpage = $(this).attr("data-currentpage");
+	// 	var total = $(this).attr("data-count");
+	// 	var ptype  = $(this).attr('data-type');
+	// 	var container  = $(this).attr('data-container');
+	// 	var orderby  = $(this).attr('data-orderby');
+	// 	var perpage  = $(this).attr('data-perpage');
+	// 	var orderbyArr  = $(this).attr('data-orderby');
+	// 	var buttonDiv = $(this).parents(".buttondiv");
+	// 	var spinner = buttonDiv.find(".spinner");
+	// 	var noMorePost = '<span class="imorebtn">No more items to load</span>';
 
-		$.ajax({
-			url : frontajax.ajaxurl,
-			type : 'post',
-			dataType : "json",
-			data : {
-				action : 'get_the_next_entries',
-				pg : currentpage,
-				posttype : ptype,
-				perpage : perpage,
-				orderby : orderbyArr
-			},
-			beforeSend:function(){
-				spinner.addClass("show");
-			},
-			success: function( obj ) {
-				var result = obj.content;
-				if( result ) {
-					var nextPage = obj.next_page;
-					var lastBatch = obj.last_batch;
-					$(container).html(result);
-					if(lastBatch) {
-						buttonDiv.append(noMorePost);
-						target.remove();
-					}
-				}
-				spinner.removeClass("show");
-			}
-		});
+	// 	$.ajax({
+	// 		url : frontajax.ajaxurl,
+	// 		type : 'post',
+	// 		dataType : "json",
+	// 		data : {
+	// 			action : 'get_the_next_entries',
+	// 			pg : currentpage,
+	// 			posttype : ptype,
+	// 			perpage : perpage,
+	// 			orderby : orderbyArr
+	// 		},
+	// 		beforeSend:function(){
+	// 			spinner.addClass("show");
+	// 		},
+	// 		success: function( obj ) {
+	// 			var result = obj.content;
+	// 			if( result ) {
+	// 				var nextPage = obj.next_page;
+	// 				var lastBatch = obj.last_batch;
+	// 				$(container).html(result);
+	// 				if(lastBatch) {
+	// 					buttonDiv.append(noMorePost);
+	// 					target.remove();
+	// 				}
+	// 			}
+	// 			spinner.removeClass("show");
+	// 		}
+	// 	});
 
-	});
+	// });
 
 
 });// END #####################################    END
