@@ -32,7 +32,9 @@ function bellaworks_scripts() {
 		true 
 	);
 
-
+	wp_localize_script( 'bellaworks-custom', 'frontajax', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' )
+	));
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

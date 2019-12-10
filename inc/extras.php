@@ -164,3 +164,98 @@ function get_social_links() {
     return $social;
 }
 
+
+/* NEWS => Get Next Entries */
+/* Get Faculty Details via Ajax */
+add_action( 'wp_ajax_nopriv_get_the_next_entries', 'get_the_next_entries' );
+add_action( 'wp_ajax_get_the_next_entries', 'get_the_next_entries' );
+function get_the_next_entries() {
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        $paged = ($_POST['pg']) ? $_POST['pg'] + 1 : 1;
+        $posttype = ($_POST['posttype']) ? $_POST['posttype'] : '';
+        $perpage = ($_POST['perpage']) ? $_POST['perpage'] : 3;
+        $orderbyArr = ($_POST['orderby']) ? $_POST['orderby'] : '';
+
+        $args = array(
+            'posts_per_page'   => $perpage,
+            'post_type'        => $posttype,
+            'post_status'      => 'publish',
+            'paged'            => $paged
+        );
+        $posts = get_posts($args);
+        $total = ($posts) ? count($posts): 0;
+        $is_last_batch = ($total<$perpage) ? true : "";
+
+        $result = next_entries_result($posttype,$paged,$perpage,$orderbyArr);
+        if($result) {
+            $response['content'] = $result;
+            $response['next_page'] = $paged + 1;
+            $response['last_batch'] = $is_last_batch;
+        } else {
+            $response['content'] = false;
+        }
+        echo json_encode($response);
+    }
+    else {
+        header("Location: ".$_SERVER["HTTP_REFERER"]);
+    }
+    die();
+}
+
+function next_entries_result($posttype='post',$paged=1,$perpage=10,$orderbyArr=null) {
+    $output = '';
+    $args = array(
+        'posts_per_page'   => $perpage,
+        'post_type'        => $posttype,
+        'post_status'      => 'publish',
+        'paged'            => $paged
+    );
+    if($orderbyArr) {
+        $args['orderby'] = $orderbyArr['orderby'];
+        $args['order'] = $orderbyArr['order'];
+    }
+    $placeholder = get_bloginfo("template_url") . "/images/square.png";
+    $posts = new WP_Query($args);
+    ob_start();
+    if ( $posts->have_posts() ) { ?>
+        
+        <?php while ( $posts->have_posts() ) : $posts->the_post();
+            $postId = get_the_ID();
+            $thumbId = get_post_thumbnail_id($postId);
+            $image = wp_get_attachment_image_src($thumbId,'medium_large');
+            $style = ($image) ? ' style="background-image:url('.$image[0].')"':'';
+            $content = get_the_content();
+            if($content) {
+                $content = strip_shortcodes($content);
+                $content = strip_tags($content);
+                $content = shortenText($content, 90, " ", "...");
+            }
+            $postdate = get_the_date('m/d/Y');
+            $pagelink = get_the_permalink();
+            $show_thumbnail = array('post');
+        ?>
+        <article data-pid="<?php the_ID() ?>" class="post-item">
+            <div class="inner cf">
+                <?php if (in_array($posttype, $show_thumbnail)) { ?>
+                    <div class="postdate"><span><?php echo $postdate ?></span></div>
+                    <div class="thumb <?php echo ($image) ? 'hasimage':'noimage'; ?>"<?php echo $style ?>>
+                        <a href="<?php echo $pagelink ?>"><img src="<?php echo $placeholder ?>" alt="" aria-hidden="true" /></a>
+                    </div>
+                <?php } else { ?>
+                    <div class="postdate"><a href="<?php echo $pagelink ?>"><?php echo $postdate ?></a></div>
+                <?php } ?>
+
+                <div class="text">
+                    <h2 class="ptitle"><a href="<?php echo $pagelink ?>"><?php echo get_the_title(); ?></a></h2>
+                    <div class="excerpt"><?php echo $content; ?></div>
+                </div>
+            </div>
+        </article>
+        <?php endwhile; wp_reset_postdata(); ?>
+
+    <?php } 
+    $output = ob_get_contents();
+    ob_end_clean();
+    return $output;
+}
+

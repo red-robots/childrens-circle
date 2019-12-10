@@ -39,8 +39,8 @@
 								<h2 class="hd">News</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
 							</div>
-							<div class="col-details">
-								<p class="text-center"><em>(development in progress...)</em></p>
+							<div class="col-details js-blocks">
+								<?php get_template_part('template-parts/content','home-news'); ?>
 							</div>
 						</div>
 					</div>
@@ -56,8 +56,8 @@
 								<h2 class="hd">Calendar</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
 							</div>
-							<div class="col-details">
-								<p class="text-center"><em>(development in progress...)</em></p>
+							<div class="col-details js-blocks">
+								<?php get_template_part('template-parts/content','home-calendar'); ?>
 							</div>
 						</div>
 					</div>
@@ -73,8 +73,14 @@
 								<h2 class="hd">Facebook Posts</h2>
 								<div class="wave"><?php include(get_template_directory().'/images/wave.svg'); ?></div>
 							</div>
-							<div class="col-details">
-								<p class="text-center"><em>(development in progress...)</em></p>
+							<div class="col-details js-blocks">
+								<?php 
+								if ( do_shortcode("[custom-facebook-feed]") ) { ?>
+									<?php echo do_shortcode("[custom-facebook-feed]"); ?>
+								<div class="buttondiv hasSpinner">
+									<a href="#" id="fbLink" class="seemore2 imorebtn"><span>See More</span></a>
+								</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
