@@ -118,8 +118,11 @@ jQuery(document).ready(function ($) {
                 $('body').addClass('scroll-up');
                 var height = 0;
                 if( $('#wpadminbar').length>0 ) {
-                    var barHeight = $('#wpadminbar').outerHeight();
-                    height += parseInt(barHeight);
+                    var adminHeight = $('#wpadminbar').outerHeight();
+                    height += parseInt(adminHeight);
+                    $("#masthead").css("top",adminHeight+"px");
+                } else {
+                	$("#masthead").css("top",0);
                 }
                 var mHeight = $("#masthead").outerHeight();
                 height += parseInt(mHeight);
@@ -129,6 +132,7 @@ jQuery(document).ready(function ($) {
             } else {
                 $('body').removeClass('scroll-up');
                 $("#pagenav").css('top',0);
+                $("#masthead").css("top",0);
             }
         }); 
 
@@ -161,14 +165,22 @@ jQuery(document).ready(function ($) {
 	      var target = $(this.hash);
 	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
 	      if (target.length) {
+
+	      	if( $('#wpadminbar').length>0 ) {
+	      		var offset1 = 400;
+	      		var offset2 = 200;
+	      	} else {
+	      		var offset1 = 375;
+	      		var offset2 = 180;
+	      	}
 	          
 	        if(times_clicked==1) {
 	            $('html,body').animate({
-	              scrollTop: target.offset().top - 375 //offsets for fixed header
+	              scrollTop: target.offset().top - offset1 //offsets for fixed header
 	            }, 1000);
 	        } else {
 	            $('html,body').animate({
-	              scrollTop: target.offset().top - 180 //offsets for fixed header
+	              scrollTop: target.offset().top - offset2 //offsets for fixed header
 	            }, 1000);
 	        }
 	        
