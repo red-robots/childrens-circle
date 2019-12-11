@@ -6,6 +6,7 @@
  */
 
 jQuery(document).ready(function ($) {
+	var times_clicked = 0;
 
 	$("#primary-menu > li > a").each(function(){
 		var cloud = $("#cloud").html();
@@ -102,6 +103,82 @@ jQuery(document).ready(function ($) {
 		var border = "<div class='divider'></div>";
 		$(border).insertAfter( target );
 	});
+
+	/* remove empty <p> tags */
+	$('p').each(function() {
+	    var $this = $(this);
+	    if($this.html().replace(/\s|&nbsp;/g, '').length == 0)
+	        $this.remove();
+	});
+
+	if( $("#pagenav").length ) {
+
+		$(window).scroll(function(){
+            if ( $(this).scrollTop() > 200 ) {
+                $('body').addClass('scroll-up');
+                var height = 0;
+                if( $('#wpadminbar').length>0 ) {
+                    var barHeight = $('#wpadminbar').outerHeight();
+                    height += parseInt(barHeight);
+                }
+                var mHeight = $("#masthead").outerHeight();
+                height += parseInt(mHeight);
+                var height_px = height + 'px';
+                $("#pagenav").css('top',height_px);
+                
+            } else {
+                $('body').removeClass('scroll-up');
+                $("#pagenav").css('top',0);
+            }
+        }); 
+
+
+        $("#currentNav").on("click",function(){
+        	$(".pagenavlinks").slideToggle();
+        });
+	}
+
+	/* SMOOTH SCROLL */
+	$('a[href*=#]:not([href=#])').click(function() {
+		var screenWidth = $('body').width();
+		var anchor = $(this);
+	    times_clicked += 1;
+	    
+
+	    if( screenWidth < 813 ) {
+		    if( anchor.hasClass('pglink') ) {
+		        $(".pagenavlinks").slideUp();
+		        var linkTxt = anchor.text();
+		    }
+		}
+
+	    var offsetTop = $("#subpagehero").outerHeight();
+	    
+	    
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+	        && location.hostname == this.hostname) {
+
+	      var target = $(this.hash);
+	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	      if (target.length) {
+	          
+	        if(times_clicked==1) {
+	            $('html,body').animate({
+	              scrollTop: target.offset().top - 375 //offsets for fixed header
+	            }, 1000);
+	        } else {
+	            $('html,body').animate({
+	              scrollTop: target.offset().top - 180 //offsets for fixed header
+	            }, 1000);
+	        }
+	        
+	        return false;
+	        
+	      }
+	    }
+	});
+    
+
 
 
 	/* === AJAX MORE ITEMS === */
