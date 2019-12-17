@@ -1226,15 +1226,25 @@ body.scroll-up .sections-titles {
 			width: 100%!important;
 		}
 	}	
+	.contact-form-wrap {
+		margin-top: 35px;
+	}
 }
 
 /* Gravity Form */
 body #content .gform_wrapper {
+	ul li.gfield {
+		margin-top: 20px;
+	}
 	.top_label .gfield_label {
 		font-weight: normal;
 		line-height: 1.1;
 		display: block;
 		width: 100%;
+	}
+	.field_sublabel_below .ginput_complex.ginput_container label, 
+	.field_sublabel_below div[class*=gfield_time_].ginput_container label {
+		margin-bottom: 0;
 	}
 	.top_label div.ginput_container {
 		margin-top: 3px!important;
