@@ -43,6 +43,7 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 <div id="loader"><div class="loader"><span class="loadtxt">Loading...</span></div></div>
+<a href="#" class="scrollup"><span><i class="fa fa-chevron-up"></i></span></a></a>
 <?php wp_footer(); ?>
 
 </body>

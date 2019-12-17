@@ -142,6 +142,19 @@ jQuery(document).ready(function ($) {
         });
 	}
 
+	$(window).scroll(function(){
+        if ( $(this).scrollTop() > 200 ) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    }); 
+
+	$('.scrollup').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+
 	/* SMOOTH SCROLL */
 	$('a[href*=#]:not([href=#])').click(function() {
 		var screenWidth = $('body').width();

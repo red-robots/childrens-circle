@@ -1,30 +1,47 @@
 <?php
 /**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package bellaworks
+ * Template Name: Contact
  */
 
 get_header(); ?>
 
 <div id="primary" class="content-area cf">
-	<main id="main" data-id="<?php the_ID(); ?>" class="site-main wrapper default cf" role="main">
+	<main id="main" data-id="<?php the_ID(); ?>" class="site-main wrapper contactpage cf" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
+
+			<?php 
+				$contact_form = get_field("contact_form"); 
+				$google_map = get_field("google_map"); 
+				$main_text = '';
+				ob_start();
+				echo the_content();
+				$main_text = ob_get_contents();
+				ob_end_clean();
+				$email_obfuscate = ($main_text) ? email_obfuscator($main_text) : '';
+			?>
 
 			<header class="entry-header text-center cf">
 				<h1 class="entry-title"><?php the_title(); ?></h1>
 			</header>
-			<?php if ( get_the_content() ) { ?>
-				<div class="entry-content"><?php the_content(); ?></div>
-			<?php } ?>
+			<div class="entry-content">
+				<div class="col-left">
+					<?php if ( get_the_content() ) { ?>
+						<?php echo $email_obfuscate; ?>
+					<?php } ?>
+					<?php if ($contact_form) { ?>
+					<div class="contact-form-wrap">
+						<?php echo $contact_form ?>
+					</div>	
+					<?php } ?>
+				</div>
+				
+				<?php if ($google_map) { ?>
+				<div class="col-right">
+					<?php echo $google_map ?>
+				</div>
+				<?php } ?>
+			</div>
 			
 
 			<?php $sections = get_field("sections"); ?>
