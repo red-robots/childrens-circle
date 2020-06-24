@@ -1460,6 +1460,9 @@ body.single-post {
 /* News page */
 body.archive,
 body.page-template-page-news {
+	.post-list {
+		min-height: 30em;
+	}
 	.entry-header {
 		text-align: left;
 		margin-top: 30px;

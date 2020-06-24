@@ -2106,6 +2106,7 @@ body.single-post #secondary ul li{border-top:1px dotted rgba(255,255,255,0.65)}
 .scrollup:active,.scrollup:focus{outline:0}
 .scrollup:hover{background:rgba(0,0,0,0.65);color:#FFF}
 .scrollup:hover span{opacity:.9}
+body.archive .post-list,body.page-template-page-news .post-list{min-height:30em}
 body.archive .entry-header,body.page-template-page-news .entry-header{text-align:left;margin-top:30px;margin-bottom:20px}
 body.archive .entry-header h1,body.page-template-page-news .entry-header h1{margin:0}
 body.archive .col-1,body.page-template-page-news .col-1{width:100%;float:left;margin-bottom:20px}
